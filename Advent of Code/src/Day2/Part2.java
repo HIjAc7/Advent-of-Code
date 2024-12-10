@@ -28,29 +28,29 @@ public class Part2 {
 			}else if (lineInt.get(1)>lineInt.get(0)){
 				increasing = true;
 			}
+			int bad = 0;
 			for(int i =lineInt.size()-1;i>0;i--) {
 				if(increasing) {
 					if(!(lineInt.get(i)-lineInt.get(i-1)<=3 && lineInt.get(i)-lineInt.get(i-1)>=0) || lineInt.get(i)==lineInt.get(i-1)) {
-						bads[i] = true;
-					}else {
-						bads[i] = false;
+						bad++;
+						if(bad == 1) {
+							i--;
+						}
 					}
 				}else {
 					if(!(lineInt.get(i-1)-lineInt.get(i)<=3 && lineInt.get(i-1)-lineInt.get(i)>=0) || lineInt.get(i)==lineInt.get(i-1)) {
-						bads[i] = true;
-					}else {
-						bads[i] = false;
+						bad++;
+						if(bad == 1) {
+							i--;
+						}
 					}
-					
 				}
 				
 			}
 			
-			for(int i =0; i<bads.length;i++) {
-				System.out.println(bads[i]);
-				if(bads[i]==true) {
-					safe = false;
-				}
+			System.out.println(bad);
+			if(bad>1) {
+				safe = false;
 			}
 			if(safe) {
 				safeLines++;
