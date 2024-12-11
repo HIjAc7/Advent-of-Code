@@ -23,24 +23,22 @@ public class Part2 {
 			for(int i =0;i<line.length;i++) {
 				lineInt.add(Integer.parseInt(line[i]));
 			}
-			if(lineInt.get(1)<lineInt.get(0)) {
-				increasing = false;
-			}else if (lineInt.get(1)>lineInt.get(0)){
-				increasing = true;
-			}
+			
 			int bad = 0;
 			for(int i =lineInt.size()-1;i>0;i--) {
-				if(increasing) {
-					if(!(lineInt.get(i)-lineInt.get(i-1)<=3 && lineInt.get(i)-lineInt.get(i-1)>=0) || lineInt.get(i)==lineInt.get(i-1)) {
+				if(lineInt.get(1)<lineInt.get(0)) {
+					if(lineInt.get(i-1)-lineInt.get(i)>3 || lineInt.get(i)>=lineInt.get(i-1)) {
 						bad++;
 						if(bad == 1) {
+							lineInt.remove(i-1);
 							i--;
 						}
 					}
-				}else {
-					if(!(lineInt.get(i-1)-lineInt.get(i)<=3 && lineInt.get(i-1)-lineInt.get(i)>=0) || lineInt.get(i)==lineInt.get(i-1)) {
+				}else if (lineInt.get(1)>lineInt.get(0)){
+					if(lineInt.get(i)-lineInt.get(i-1)>3 || lineInt.get(i)<=lineInt.get(i-1)) {
 						bad++;
 						if(bad == 1) {
+							lineInt.remove(i-1);
 							i--;
 						}
 					}
