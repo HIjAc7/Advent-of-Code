@@ -22,45 +22,39 @@ public class Part1 {
 		}
 		
 		for(int i = 0;i<list.size();i++) {
+			String s = "";
+			ArrayList<String> l = new ArrayList<String>();
 			String obj = list.get(i);
 			ArrayList<String> obj2 = new ArrayList<String>();
 			for(int j = 0;j<obj.length();j++) {
 				obj2.add(obj.substring(j,j+1));
 			}
-			System.out.println(obj2);
 			for(int k = 0;k<obj2.size();k++) {
 				String str = obj2.get(k);
 				if(!(str.equals("m")||str.equals("u")||str.equals("l")||str.equals("(")||str.equals(",")||str.equals(")")||str.equals("1")||str.equals("2")||str.equals("3")||str.equals("4")||str.equals("5")||str.equals("6")||str.equals("7")||str.equals("8")||str.equals("9")||str.equals("0"))) {
 					obj2.remove(k);
 				}
 			}
-			System.out.println(obj2);
-//			if(obj.contains("mul(") && obj.contains(")") && obj.contains(",")) {
-//				index = obj.indexOf("mul(");
-//				index2 = obj.indexOf(")");
-//				index3 = obj.indexOf(",");
-//				if(index<index2 && index<index3 && index2>index3) {
-//					System.out.println(obj.substring(index,index2+1));
-//					System.out.println(obj.length());
-//					list2.add(obj.substring(index,index2+1));
-//				}
-//			}
-//			if(obj2.contains("m") && obj2.contains(")") && obj2.contains("u") && obj.contains(",")) {
-//				index = obj2.lastIndexOf(")");
-//				index3 = obj.lastIndexOf(",");
-//				index4
-//				index2 = obj2.lastIndexOf("m");
-//				if(index-index2<=11 && index-index2>=7) {
-//					for(int g = index2;g<index+1;g++) {
-//						System.out.print(obj2.get(g));
-//						list2.add(obj2.get(g));
-//					}
-//					System.out.println("");
-//			//System.out.println(list2);
-//				}
-//			}
 			
-			
+		
+			while(obj2.contains("m") && obj2.contains(")")) {
+				s = "";
+				for(int j = 0;j<obj2.size();j++) {
+					s += obj2.get(j);
+				}
+				
+				index = s.indexOf("mul(");
+				index2 = s.indexOf(")");
+				if(index<index2 && index>=0 && index2>0) {
+					l.add(s.substring(s.indexOf("mul(",s.indexOf(")")+1)));
+					for(int g = obj2.indexOf("m");g<obj2.indexOf(")");g++) {
+						obj2.remove(g);
+					}
+				}else {
+					obj2.remove(obj2.indexOf(")"));
+				}
+			}
+			System.out.println(l);
 		}
 	}
 }
